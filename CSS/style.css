@@ -79,7 +79,7 @@ nav a:hover::before{
     color: #c0c0c0;
     display: inline-block;
     text-align: center;
-    font-size: 30px;
+    font-size: 80px;
     font-weight: 100;
 }
 
@@ -97,7 +97,7 @@ nav a:hover::before{
 
 .smalltext{
     padding-top: 5px;
-    font-size: 16px;
+    font-size: 35px;
 }
 
 /*Base HTML tag styles*/
