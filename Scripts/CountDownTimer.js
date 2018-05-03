@@ -1,31 +1,40 @@
 //Set the day being counted down too
-var countDownDate = new Date("Aug 17, 2019 10:00:00").getTime;
+var deadLine = 'August 17 2019 10:00:00 PST';
 
-document.getElementById("countDown").innerHTML = "Testing";
+function GetTimeRemaining(endtime)
+{
+    var t = Date.parse(endtime) - Date.parse(new Date());
+    var seconds = Math.floor((t/1000) % 60);
+    var minutes = Math.floor((t/1000/60) % 60);
+    var hours = Math.floor((t/(1000*60*60)) % 24);
+    var days = Math.floor(t / (1000*60*60*24));
 
-//Update countdown every 1 second
-var x = setInterval(function(){
+    return{
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    };
+}
 
-    //Get todays date and time
-    var now = new Date.getTime();
+function initializeClock(id, endtime)
+{
+    var clock = document.getElementById(id);
+    var daysSpan = clock.querySelector('.days');
+    var hoursSpan = clock.querySelector('.hours');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
 
-    //Find distance between now and countdown date.
-    var distance = countDownDate - now;
-
-    //Time calculations for days, hours, minutes, and seconds.
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 *60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    //Display the result in the element with the id="countDown"
-    //document.getElementById("countDown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-    document.getElementById("countDown").innerHTML = "Testing";
-
-    //If the count down is finished, write a message
-    if(distance < 0)
-    {
-        clearInterval(x);
-        document.getElementById("countDown").innerHTML = "It's the big day!";
-    }
-});
+    var timeInterval = setInterval(function(){
+        var t = GetTimeRemaining(endtime);
+        daysSpan.innerHTML = ('0' + t.days).slice(-3);
+        hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+        minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+        secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+        if(total <= 0)
+        {
+            clearInterval(timeInterval);
+        }
+    }, 1000);
+}
