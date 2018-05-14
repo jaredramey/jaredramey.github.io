@@ -10,7 +10,8 @@ File Structure:
  contact
  
  Ideas:
- -TBD
+ - Add a way to display Registry and RSVP list from a SQL database.
+	-> Need a way to show it on Github pages since they don't support it.
  
  Notes:
  Color pallet (May have to get updated/ tweaked later)
